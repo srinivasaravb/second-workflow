@@ -1,0 +1,26 @@
+name: Enforce Brnach Naming Policy
+on:
+  create:
+
+jobs:
+  check-brnach-name:
+    if: github.ref_type ==  'branch'
+    runs-on:  ubuntu-latest
+
+    steps:
+      - name: validate branch name
+        run: |
+          BRANCH_NAME= "${GITHUB_REF_NAME}"
+          echo : branch created : "$BRANCH_NAME"
+
+          #regex
+          REGEX = "^feature\/[A_Z]+-[0-9]+-[a-z0-9-]{1,30}$"
+
+          if [[ ! "$BRANCH_NAME" =~ $REGEX ]]; then
+            echo "❌ invalid Brnach Name"
+            echo "Expected Foramt :"
+            echo "feature/JIRA-123-purpose (max 30 chars after feature/)"
+            exit 1
+          fi
+
+          echo "✅ Branch name follows the standard"
