@@ -1,5 +1,17 @@
 name: Test Workflow
-on: push
+on: 
+  push:
+    branches:
+      - main
+      - feature/*
+  pull_request:
+    types: [opened,closed, ready_for_review, assigned, synchronize]
+
+  issues:
+    types: [opened, closed, reopened]
+  branch_protection_rule:
+    types: [ created, deleted, edited]
+  fork:
 jobs:
   test:
     runs-on: ubuntu-latest
