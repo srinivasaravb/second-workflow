@@ -10,11 +10,12 @@ jobs:
     steps:
       - name: validate branch name
         run: |
-          BRANCH_NAME= "${GITHUB_REF_NAME}"
+          BRANCH_NAME="${GITHUB_REF_NAME}"
+
           echo : branch created : "$BRANCH_NAME"
 
           #regex
-          REGEX = "^feature\/[A_Z]+-[0-9]+-[a-z0-9-]{1,30}$"
+          REGEX="^feature\/[A-Z]+-[0-9]+-[a-z0-9-]{1,30}$"
 
           if [[ ! "$BRANCH_NAME" =~ $REGEX ]]; then
             echo "❌ invalid Brnach Name"
