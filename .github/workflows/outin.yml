@@ -1,0 +1,8 @@
+name: capturing information
+on: [ push, workflow_dispatch ]
+jobs:
+  buil-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: github context details
+        run: echo " {{ toJson(github)}}"
