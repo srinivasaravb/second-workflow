@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 18
       - name: "Install Dependencies"
-        run: npm Install
+        run: npm install
       - name: "Build Projet"
         run: npm run build
       - name: "Deploy App......."
